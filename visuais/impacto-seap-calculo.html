@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Geonexo · Impacto no SEAP</title>
+<style>
+:root {
+  color-scheme: dark;
+  --background: #141518;
+  --surface: #17181b;
+  --raised: #1d1e21;
+  --edge: #2b2c30;
+  --text: #f4f4f5;
+  --secondary: #a9aaae;
+  --steel: #c7c8cc;
+  --mid-steel: #686a72;
+  --frame-shadow: inset 0 1px #ffffff0d, inset 0 -1px #0005, 0 3px #0b0c0d, 0 10px 24px #0005;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font: 14px/1.45 "Segoe UI", system-ui, sans-serif;
+}
+.wrap { width: min(1260px, calc(100% - 64px)); margin: 32px auto 0; }
+.frame {
+  background-color: var(--surface);
+  background-image: url("data:image/png;base64,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");
+  border: 1px solid var(--edge);
+  border-radius: 25px;
+  box-shadow: var(--frame-shadow);
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 26px;
+  flex-wrap: wrap;
+  padding: 17px 22px;
+  margin-bottom: 18px;
+}
+.brand { display: flex; gap: 12px; align-items: center; }
+h1, h2, p { margin: 0; }
+h1 { font-size: 22px; line-height: 1.2; font-weight: 720; letter-spacing: -.025em; }
+h2 { font-size: 17px; line-height: 1.25; font-weight: 680; letter-spacing: -.016em; }
+.brand-mark {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 3px;
+  width: 37px;
+  height: 37px;
+  padding-bottom: 10px;
+  border: 1px solid var(--edge);
+  border-radius: 11px;
+  background: var(--raised);
+  box-shadow: inset 0 1px #ffffff10, 0 2px #0b0c0e;
+}
+.brand-mark span { width: 3px; border-radius: 1px; background: var(--steel); height: 8px; }
+.brand-mark span:nth-child(2) { height: 12px; }
+.brand-mark span:nth-child(3) { height: 16px; }
+.context, .stats { display: flex; align-items: center; gap: 10px; }
+.stats { margin: 0; }
+.stats div { padding: 6px 11px; border: 1px solid #292a2e; border-radius: 9px; }
+.stats dt { color: var(--secondary); font-size: 12px; }
+.stats dd { margin: 0; font-size: 15px; font-weight: 700; line-height: 1.3; white-space: nowrap; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--steel); outline-offset: 3px; }
+.action {
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid #34353a;
+  border-radius: 10px;
+  background: var(--raised);
+  box-shadow: inset 0 1px #ffffff10, 0 2px #0b0c0d;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.action:active { transform: translateY(1px); box-shadow: inset 0 1px 3px #0007; }
+.grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 18px; }
+.card { min-width: 0; padding: 20px 22px; }
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #27282c;
+}
+.kpi-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 15px 0 18px; }
+.kpi {
+  font-size: 24px;
+  line-height: 1.1;
+  letter-spacing: -.035em;
+  font-weight: 700;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.kpi-caption { display: block; margin-top: 4px; color: var(--secondary); font-size: 13px; }
+.segment-block { display: grid; justify-items: end; gap: 5px; }
+.segment-block p { font-size: 12px; color: var(--secondary); }
+.segment {
+  display: flex;
+  gap: 3px;
+  padding: 3px;
+  border: 1px solid #2a2b2e;
+  border-radius: 10px;
+  background: #111214;
+  box-shadow: inset 0 2px 4px #0008;
+}
+.segment button {
+  min-height: 34px;
+  padding: 0 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--secondary);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.segment button[aria-pressed="true"] {
+  background: #27282c;
+  border-color: #3a3b41;
+  box-shadow: inset 0 1px #ffffff0c, 0 1px #0007;
+  color: var(--text);
+}
+.chart { --chart-height: 156px; display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: 9px; }
+.axis { display: flex; flex-direction: column; justify-content: space-between; height: var(--chart-height); text-align: right; }
+.axis span, .tick { color: var(--secondary); font-size: 12px; font-variant-numeric: tabular-nums; }
+.axis span { line-height: 1; }
+.plot { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 3px; }
+.plot::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 1px;
+  background: #2c2d31;
+  box-shadow: 0 calc(var(--chart-height) / 3) #2c2d31, 0 calc(var(--chart-height) / 1.5) #2c2d31, 0 var(--chart-height) #3b3c40;
+  pointer-events: none;
+}
+.bar-choice {
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--chart-height) 32px;
+  justify-items: center;
+  align-items: end;
+  min-width: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  padding: 0;
+}
+.bar { width: min(66%, 45px); height: var(--height, 0%); border-radius: 5px 5px 1px 1px; background: var(--mid-steel); }
+.bar-choice[aria-pressed="true"] .bar { background: var(--steel); }
+.tick { align-self: center; padding: 3px 8px; border: 1px solid transparent; border-radius: 6px; }
+.bar-choice[aria-pressed="true"] .tick { background: #2a2b2f; color: var(--text); border-color: #434449; }
+.x-label { color: var(--secondary); text-align: center; font-size: 12px; margin-top: 3px; }
+.composition {
+  display: grid;
+  grid-template-columns: minmax(0, 148px) minmax(0, 1fr);
+  align-content: center;
+  align-items: center;
+  gap: 16px;
+  min-height: 252px;
+}
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #131416;
+  box-shadow: inset 0 2px 5px #0009, 0 1px #ffffff0c;
+}
+.ring-chart { position: absolute; inset: 7px; width: calc(100% - 14px); height: calc(100% - 14px); }
+.ring-value { position: relative; text-align: center; }
+.ring-value strong { display: block; font-size: 18px; font-weight: 700; letter-spacing: -.03em; }
+.ring-value span { color: var(--secondary); font-size: 12px; }
+.legend { display: grid; gap: 9px; margin: 0; }
+.legend div {
+  padding: 8px 10px;
+  border: 1px solid var(--edge);
+  border-radius: 9px;
+  background: var(--raised);
+  box-shadow: inset 0 1px #ffffff09, 0 2px #0d0e10;
+}
+.legend dt { display: flex; align-items: center; gap: 7px; color: var(--secondary); font-size: 12px; }
+.legend dd { margin: 2px 0 0 14px; font-size: 15px; font-weight: 680; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--steel); flex: none; }
+.dot.specialist { background: var(--mid-steel); }
+.card-note { margin-top: 4px; color: var(--secondary); font-size: 12px; text-align: center; }
+.horizon { margin-top: 18px; }
+.milestones { margin: 13px 0 0; color: var(--secondary); font-size: 13px; }
+.projection-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.projection-controls label { display: grid; gap: 5px; align-content: end; font-size: 13px; color: var(--secondary); }
+.projection-controls input {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: #111214;
+  color: var(--text);
+  box-shadow: inset 0 2px 4px #0006;
+  padding: 6px 9px;
+  font: inherit;
+}
+.projection-controls input:focus-visible { outline: 2px solid var(--steel); outline-offset: 2px; }
+.projection-controls input[aria-invalid="true"] { border-color: var(--steel); }
+.projection-status { margin: 0 0 7px; color: var(--secondary); font-size: 12px; }
+.projection-table { width: 100%; border-collapse: collapse; table-layout: fixed; font-variant-numeric: tabular-nums; }
+.projection-table th, .projection-table td { padding: 8px 3px; text-align: right; border-bottom: 1px solid #2b2c30; overflow-wrap: anywhere; }
+.projection-table th:first-child { text-align: left; }
+.projection-table thead th, .projection-table tbody th { font-size: 13px; font-weight: 600; }
+.projection-table td small { display: block; color: var(--secondary); font-size: 12px; }
+.projection-table .total { background: #1d1e21; }
+.projection-table .total th, .projection-table .total td { font-weight: 700; }
+footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 7px 20px; padding: 19px 3px; color: var(--secondary); font-size: 12px; }
+a { color: #d4d4d7; text-underline-offset: 3px; }
+dialog {
+  width: min(540px, calc(100% - 24px));
+  max-height: calc(100% - 24px);
+  padding: 21px;
+  color: var(--text);
+}
+dialog::backdrop { background: #09090bcc; }
+.dialog-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+dialog p { color: #d4d4d7; margin: 10px 0; }
+dialog ul { padding-left: 19px; color: #d4d4d7; }
+dialog li { margin: 7px 0; }
+@media (hover: hover) and (pointer: fine) {
+  .action:hover, .segment button:not([aria-pressed="true"]):hover { background: #25262a; }
+  .bar-choice:hover { background: #ffffff08; }
+}
+@media (max-width: 900px) {
+  .wrap { width: min(100% - 32px, 680px); margin-top: 16px; }
+  .grid { grid-template-columns: 1fr; }
+  .composition { justify-content: center; grid-template-columns: minmax(0, 148px) minmax(0, 230px); min-height: 200px; }
+}
+@media (max-width: 460px) {
+  .wrap { width: calc(100% - 24px); }
+  header, .card { padding: 13px; border-radius: 18px; }
+  .context { width: 100%; flex-wrap: wrap; justify-content: space-between; }
+  .stats { gap: 5px; }
+  .stats div { padding-inline: 7px; }
+  .kpi-row { align-items: flex-start; flex-wrap: wrap; }
+  .segment-block { justify-items: start; }
+  .segment button, .action { min-height: 42px; }
+  .tick { padding-inline: 5px; }
+  .composition { grid-template-columns: minmax(0, 122px) minmax(0, 1fr); gap: 8px; }
+  .projection-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ring-value strong { font-size: 16px; }
+  .legend div { padding-inline: 7px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="frame">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+    <h1>Impacto no SEAP</h1>
+  </div>
+  <div class="context">
+    <dl class="stats" aria-label="Previsões para Sergipe Águas Profundas">
+      <div><dt>Investimento</dt><dd>R$ 60 bi+</dd></div>
+      <div><dt>Poços previstos</dt><dd>32</dd></div>
+    </dl>
+    <button class="action" type="button" data-open="pitch">Roteiro do pitch</button>
+  </div>
+</header>
+
+<main>
+<div class="grid">
+  <section class="frame card" aria-labelledby="operational-title">
+    <div class="card-head">
+      <h2 id="operational-title">Espera de sonda</h2>
+      <button class="action" type="button" data-open="operation">Premissas</button>
+    </div>
+    <div class="kpi-row">
+      <div aria-live="polite"><p class="kpi" id="value">R$ 341 mil</p><span class="kpi-caption" id="hours">4 h de sonda · 8 poços</span></div>
+      <div class="segment-block">
+        <p id="minutes-label">Espera evitada por poço</p>
+        <div class="segment" aria-labelledby="minutes-label" role="group">
+          <button type="button" data-minutes="30" aria-pressed="true">30 min</button>
+          <button type="button" data-minutes="40" aria-pressed="false">40 min</button>
+          <button type="button" data-minutes="60" aria-pressed="false">60 min</button>
+        </div>
+      </div>
+    </div>
+    <div class="chart">
+      <div class="axis" aria-hidden="true"><span>R$ 3 mi</span><span>R$ 2 mi</span><span>R$ 1 mi</span><span>R$ 0</span></div>
+      <div class="plot" role="group" aria-label="Valor equivalente no ciclo. Selecione o número de poços.">
+        <button class="bar-choice" type="button" data-wells="0" aria-pressed="false"><span class="bar" aria-hidden="true"></span><span class="tick">0</span></button>
+        <button class="bar-choice" type="button" data-wells="4" aria-pressed="false"><span class="bar" aria-hidden="true"></span><span class="tick">4</span></button>
+        <button class="bar-choice" type="button" data-wells="8" aria-pressed="true"><span class="bar" aria-hidden="true"></span><span class="tick">8</span></button>
+        <button class="bar-choice" type="button" data-wells="16" aria-pressed="false"><span class="bar" aria-hidden="true"></span><span class="tick">16</span></button>
+        <button class="bar-choice" type="button" data-wells="24" aria-pressed="false"><span class="bar" aria-hidden="true"></span><span class="tick">24</span></button>
+        <button class="bar-choice" type="button" data-wells="32" aria-pressed="false"><span class="bar" aria-hidden="true"></span><span class="tick">32</span></button>
+      </div>
+    </div>
+    <p class="x-label">Poços com espera evitada</p>
+  </section>
+
+  <section class="frame card" aria-labelledby="base-title">
+    <div class="card-head">
+      <h2 id="base-title">Cenário intermediário</h2>
+      <button class="action" type="button" data-open="base">Cálculo</button>
+    </div>
+    <div class="composition">
+      <div class="ring">
+        <canvas id="ring-chart" class="ring-chart" width="320" height="320" aria-hidden="true"></canvas>
+        <div class="ring-value"><strong>R$ 408,2 mil</strong><span>Valor bruto</span></div>
+      </div>
+      <dl class="legend">
+        <div><dt><span class="dot specialist" aria-hidden="true"></span>Especialista · 672 h</dt><dd>R$ 67,2 mil</dd></div>
+        <div><dt><span class="dot" aria-hidden="true"></span>Sonda · 4 h</dt><dd>R$ 341 mil</dd></div>
+      </dl>
+    </div>
+    <p class="card-note">Soma válida se os ganhos forem independentes.</p>
+  </section>
+</div>
+
+<section class="frame card horizon" aria-labelledby="horizon-title">
+  <div class="card-head">
+    <h2 id="horizon-title">Economia ao longo do tempo</h2>
+    <button class="action" type="button" data-open="projection-details">Como foi calculado</button>
+  </div>
+  <p class="milestones">
+    Primeiro óleo previsto: <a href="https://iose.se.gov.br/noticia/sedetec-destaca-confirmacao-de-sergipe-aguas-profundas-no-planejamento-da-petrobras.html">2030 (SEAP II) e 2031 (SEAP I)</a>
+    · <a href="https://sergipe.se.gov.br/secom/noticia/projeto_sergipe_aguas_profundas_tem_plano_de_desenvolvimento_aprovado_pelo_governo_federal">≈25 anos de horizonte produtivo</a>
+  </p>
+  <div class="projection-controls">
+    <label for="usage-years">Anos de uso efetivo <input id="usage-years" type="number" min="1" max="25" step="1" value="4" required></label>
+    <label for="covered-wells">Poços com espera evitada no total <input id="covered-wells" type="number" min="0" max="32" step="1" value="8" required></label>
+    <label for="capture-rate">Captura financeira (%) <input id="capture-rate" type="number" min="0" max="100" step="1" value="50" required></label>
+    <label for="solution-cost">Custo total da solução (R$) <input id="solution-cost" type="number" min="0" max="1000000000" step="0.01" value="50000" required></label>
+  </div>
+  <p class="projection-status" id="projection-status" aria-live="polite">Economia líquida de sonda e tempo liberado. Médias desde a adoção, sem calendário de perfuração implícito.</p>
+  <table class="projection-table" aria-label="Economia líquida de sonda e tempo liberado por período">
+    <thead><tr><th scope="col">Período</th><th scope="col">40 min por poço</th><th scope="col">60 min por poço</th></tr></thead>
+    <tbody id="projection-rows"></tbody>
+  </table>
+</section>
+</main>
+
+<footer>
+  <p>Projeções no ciclo do projeto.</p>
+  <p>Fontes: <a href="https://agencia.petrobras.com.br/w/negocio/petrobras-aprova-novos-investimentos-em-seap-e-avan%C3%A7a-na-contrata%C3%A7%C3%A3o-de-duas-plataformas-para-a-bacia-sergipe-alagoas">Petrobras</a> · <a href="https://ir.seadrill.com/news/news-details/2026/Seadrill-Announces-West-Polaris-Contract-Extension-in-Brazil/default.aspx">Seadrill</a></p>
+</footer>
+</div>
+
+<dialog class="frame" id="operation" aria-labelledby="operation-heading">
+  <div class="dialog-head"><h2 id="operation-heading">De onde vem a conta</h2><form method="dialog"><button class="action" type="submit" autofocus>Fechar</button></form></div>
+  <p id="equation"></p>
+  <p>A Seadrill divulgou US$ 409.200 por dia para a West Polaris em Búzios, de abril de 2026 a março de 2027. A conversão usa R$ 5,00 por dólar como premissa e divide o valor diário por 24. A tarifa do SEAP precisa de confirmação própria.</p>
+  <p>O valor de sonda só se aplica quando a decisão bloqueava a operação e a espera foi eliminada. Para capturar valor financeiro, é preciso reaproveitar o intervalo ou reduzir o tempo contratado.</p>
+</dialog>
+<dialog class="frame" id="base" aria-labelledby="base-heading">
+  <div class="dialog-head"><h2 id="base-heading">Cenário intermediário</h2><form method="dialog"><button class="action" type="submit" autofocus>Fechar</button></form></div>
+  <ul>
+    <li>24 poços analisados × 80 h de trabalho por poço × 35% de redução = 672 h de trabalho individual. A R$ 100/h, são R$ 67.200 em capacidade de trabalho.</li>
+    <li>Em 8 dos 24 poços, supõe-se evitar 30 min de espera com a sonda dependente da decisão. São 4 h × R$ 85.250/h = R$ 341.000 em valor equivalente.</li>
+    <li>R$ 408.200 no ciclo é o valor bruto combinado, sujeito à independência das parcelas. A conta precede custos de implantação e operação.</li>
+  </ul>
+</dialog>
+<dialog class="frame" id="pitch" aria-labelledby="pitch-heading">
+  <div class="dialog-head"><h2 id="pitch-heading">Fala para o pitch</h2><form method="dialog"><button class="action" type="submit" autofocus>Fechar</button></form></div>
+  <p>“Em Sergipe, há 32 poços previstos no projeto de águas profundas. Queremos começar medindo quanto tempo o geólogo recupera sem perder qualidade na revisão. Se 24 poços exigirem 80 horas de análise cada e a assistência reduzir esse trabalho em 35%, são 672 horas liberadas no ciclo.”</p>
+  <p>“O impacto muda quando a sonda está esperando pela decisão. Se meia hora de espera cair em oito poços, são quatro horas liberadas. Pela referência pública de Búzios, isso equivale a R$ 341 mil. É uma hipótese que precisa ser confirmada com quem opera.”</p>
+</dialog>
+
+<dialog class="frame" id="projection-details" aria-labelledby="projection-heading">
+  <div class="dialog-head"><h2 id="projection-heading">Premissas da projeção</h2><form method="dialog"><button class="action" type="submit" autofocus>Fechar</button></form></div>
+  <p>Quatro anos de uso, oito poços, 50% de captura e R$ 50 mil de custo são hipóteses ajustáveis. Cada poço contribui com uma espera efetivamente evitada. A janela começa quando a ferramenta entra em uso. A duração da campanha, a data de adoção e a tarifa da sonda do SEAP precisam de confirmação própria.</p>
+  <p>Horas = poços × minutos ÷ 60. Valor bruto = horas × R$ 85.250/h, referência da West Polaris em Búzios. Economia líquida = valor bruto × captura financeira − custo total da solução.</p>
+  <p id="gross-projection"></p>
+  <p>As médias distribuem tempo, valor e custo ao longo dos anos de uso (52 semanas ou 12 meses por ano). São valores a preços de referência, sem desconto ou calendário de caixa. O horizonte produtivo cobre extração e termina com as concessões reportadas para 2055 e 2057. A análise acústica gera economia de sonda apenas quando elimina uma espera operacional. O tempo do especialista fica fora desta conta.</p>
+</dialog>
+
+<script>
+"use strict";
+const rigHour = 409200 * 5 / 24;
+const scale = 3000000;
+const money = new Intl.NumberFormat("pt-BR", {style:"currency", currency:"BRL", maximumFractionDigits:0});
+const decimal = new Intl.NumberFormat("pt-BR", {maximumFractionDigits:2});
+const minutesButtons = [...document.querySelectorAll("[data-minutes]")];
+const wellsButtons = [...document.querySelectorAll("[data-wells]")];
+const valueLabel = document.getElementById("value");
+const hoursLabel = document.getElementById("hours");
+const equation = document.getElementById("equation");
+let minutes = 30;
+let wells = 8;
+
+function displayMoney(value) {
+  if (value >= 1e6) return "R$ " + decimal.format(value / 1e6) + " mi";
+  if (value >= 1000) return "R$ " + decimal.format(value / 1000) + " mil";
+  return money.format(value);
+}
+
+function update() {
+  const hours = wells * minutes / 60;
+  const value = hours * rigHour;
+  valueLabel.textContent = displayMoney(value);
+  hoursLabel.textContent = decimal.format(hours) + " h de sonda · " + wells + " poços";
+  equation.textContent = wells + " poços × " + minutes + " min ÷ 60 × " + money.format(rigHour) + "/h = " + money.format(value) + ".";
+  for (const button of minutesButtons) {
+    button.setAttribute("aria-pressed", String(Number(button.dataset.minutes) === minutes));
+  }
+  for (const button of wellsButtons) {
+    const count = Number(button.dataset.wells);
+    const total = count * minutes / 60 * rigHour;
+    const description = count + " poços · " + money.format(total);
+    button.setAttribute("aria-pressed", String(count === wells));
+    button.setAttribute("aria-label", description);
+    button.title = description;
+    button.style.setProperty("--height", (100 * total / scale) + "%");
+  }
+}
+
+for (const button of minutesButtons) {
+  button.addEventListener("click", () => {
+    minutes = Number(button.dataset.minutes);
+    update();
+  });
+}
+for (const button of wellsButtons) {
+  button.addEventListener("click", () => {
+    wells = Number(button.dataset.wells);
+    update();
+  });
+}
+for (const trigger of document.querySelectorAll("[data-open]")) {
+  trigger.addEventListener("click", () => document.getElementById(trigger.dataset.open).showModal());
+}
+const projectionInputs = [...document.querySelectorAll(".projection-controls input")];
+const projectionRows = document.getElementById("projection-rows");
+const projectionStatus = document.getElementById("projection-status");
+const grossProjection = document.getElementById("gross-projection");
+const scenarioMinutes = [40, 60];
+
+function elapsedTime(hours) {
+  const roundedMinutes = Math.round(hours * 60);
+  if (roundedMinutes === 0) return hours > 0 ? "<1 min" : "0 min";
+  const wholeHours = Math.floor(roundedMinutes / 60);
+  const minutes = roundedMinutes % 60;
+  return [wholeHours && wholeHours + " h", minutes && minutes + " min"].filter(Boolean).join(" ");
+}
+
+function renderProjection() {
+  const valid = projectionInputs.map(input => {
+    input.setAttribute("aria-invalid", String(!input.validity.valid));
+    return input.validity.valid;
+  }).every(Boolean);
+  if (!valid) {
+    projectionRows.replaceChildren();
+    projectionStatus.textContent = "Preencha os campos nos limites indicados.";
+    grossProjection.textContent = "";
+    return;
+  }
+
+  const [years, opportunities, capture, cost] = projectionInputs.map(input => input.valueAsNumber);
+  const scenarios = scenarioMinutes.map(minutes => {
+    const hours = opportunities * minutes / 60;
+    const gross = hours * rigHour;
+    return { hours, gross, net: gross * capture / 100 - cost };
+  });
+  const periods = [["Semana média", years * 52], ["Mês médio", years * 12], ["Ano médio", years], [`Total · ${years} ${years === 1 ? "ano" : "anos"}`, 1]];
+  projectionRows.replaceChildren(...periods.map(([label, divisor], index) => {
+    const row = document.createElement("tr");
+    if (index === periods.length - 1) row.className = "total";
+    const heading = document.createElement("th");
+    heading.scope = "row";
+    heading.textContent = label;
+    row.append(heading);
+    for (const { net, hours } of scenarios) {
+      const value = document.createElement("td");
+      const time = document.createElement("small");
+      time.textContent = elapsedTime(hours / divisor);
+      value.append(money.format(net / divisor), time);
+      row.append(value);
+    }
+    return row;
+  }));
+  projectionStatus.textContent = "Economia líquida de sonda e tempo liberado. Médias desde a adoção, sem calendário de perfuração implícito.";
+  grossProjection.textContent = "Valor bruto no período: " + scenarios.map(({ gross }, index) => money.format(gross) + " a " + scenarioMinutes[index] + " min por poço").join(" · ") + ".";
+}
+for (const input of projectionInputs) input.addEventListener("input", renderProjection);
+renderProjection();
+
+const canvas = document.getElementById("ring-chart");
+const context = canvas.getContext("2d");
+const center = canvas.width / 2;
+const colors = getComputedStyle(canvas);
+const start = -Math.PI / 2;
+const split = start + 2 * Math.PI * (67200 / 408200);
+const end = start + 2 * Math.PI;
+const gap = 0.014;
+
+context.lineWidth = 22;
+for (const [from, to, color] of [[start, split, "--mid-steel"], [split, end, "--steel"]]) {
+  context.beginPath();
+  context.strokeStyle = colors.getPropertyValue(color).trim();
+  context.arc(center, center, center - 22, from + gap, to - gap);
+  context.stroke();
+}
+update();
+</script>
+</body>
+</html>

@@ -27,16 +27,22 @@ Roteiro para ensaio com banca multidisciplinar. Os nomes e os trechos da demo de
 
 > Em Sergipe, a Petrobras prevê mais de R$ 60 bilhões para um projeto de águas profundas com duas plataformas e 32 poços. É uma oportunidade regional para desenvolver ferramentas que ajudem a transformar medições em decisões.
 >
-> Se uma equipe com custo de referência de R$ 200 por hora liberar 40 minutos por dia ao longo de 220 dias, são cerca de R$ 29 mil por ano em capacidade de trabalho. Em um cenário de 35 equipes com o mesmo ganho, a projeção passa de R$ 1 milhão. O próximo passo é medir o tempo e a qualidade da análise em tarefas reais.
+> Em Búzios, a diária publicada de um navio-sonda passa de US$ 400 mil. Quando a próxima etapa depende da interpretação de uma imagem, uma hora de espera vale cerca de R$ 85 mil nessa tarifa.
+>
+> Imagine evitar uma hora de espera por mês. Em um ano de operação, são 12 horas liberadas, equivalentes a pouco mais de R$ 1 milhão. O piloto mede se a próxima operação começa mais cedo e quanto desse tempo pode reduzir custos.
 >
 > Queremos que o geólogo encontre mais rápido os trechos que precisam do seu olhar e veja, com clareza, onde a imagem deixa dúvidas. Obrigado.
 
 A revelação usa a estrutura de três capacidades reunidas, inspirada no lançamento do iPhone. [Apple — lançamento de 2007](https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/)
+
+Use a sequência **Sergipe → sondas e poços → diária de sonda → momento da espera → uma hora por mês → faixa anual**. A última tela mostra o equivalente bruto para 2, 12 e 24 horas de sonda liberadas, com tarifa externa e câmbio ilustrativo. O cenário de R$ 2,046 milhões exige documentar 24 horas evitadas no mesmo ano, sem duplicar horas entre sondas. Reserve as hipóteses de captura e custos para a arguição. [História visual](../visuais/impacto-seap.html) · [Memória de cálculo](impacto.md)
+
+Se perguntarem pelo horizonte completo, abra o simulador detalhado. O cronograma oficial situa o primeiro óleo em 2030 e 2031. A duração da campanha, a frequência das esperas e as condições comerciais determinam a janela em que pode haver economia. [Projeção interativa](../visuais/impacto-seap-calculo.html#horizon-title) · [Cronograma oficial](https://iose.se.gov.br/noticia/sedetec-destaca-confirmacao-de-sergipe-aguas-profundas-no-planejamento-da-petrobras.html)
 
 ## Para a arguição
 
 - **Geologia** · Mostrar o que é medido e o que é estimado. Ter um exemplo de abstenção.
 - **Engenharia** · Explicar a continuidade circular em 0°/360° e a comparação com a referência simples.
 - **IA** · Mostrar divisão por poço, máscaras, métricas e a relação entre divergência e erro.
-- **Negócio** · Apresentar premissas, piloto e como o tempo recuperado será aproveitado.
+- **Negócio** · Explicar quando a análise está no caminho crítico da sonda, como o tempo recuperado pode ser reaproveitado e quais evidências ainda faltam.
 - **Sergipe** · Explicar a conexão industrial com o SEAP e a origem dos dados do desafio.
