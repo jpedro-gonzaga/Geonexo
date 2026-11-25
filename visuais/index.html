@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Geonexo — Galeria do hackathon</title>
+  <link rel="stylesheet" href="galeria.css">
+  <script src="galeria.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Geonexo</h1>
+    <p>Galeria do hackathon · Demonstrações conceituais com dados sintéticos</p>
+    <nav aria-label="Seções">
+      <a href="#aquisicao">Fundamentos</a>
+      <a href="#visualizador">Visualizador</a>
+      <a href="#produtividade">Produtividade</a>
+      <a href="#storyboard">Pitch</a>
+    </nav>
+  </header>
+  <main>
+    <section id="aquisicao">
+      <h2>Da parede do poço à imagem</h2>
+      <div class="cols">
+        <figure>
+          <svg viewBox="0 0 330 140" role="img" aria-label="Sonda envia um pulso à parede do poço e recebe o eco">
+            <rect x="20" y="10" width="280" height="120" rx="10" fill="#734822"/>
+            <rect x="115" y="10" width="105" height="120" fill="#1c3145"/>
+            <path d="M220 56l30 12 20 33 30 7" fill="none" stroke="#e0b78a" stroke-width="3"/>
+            <rect x="150" y="43" width="23" height="54" rx="7" fill="#62decb"/>
+            <path d="M173 54H213l-8-6M213 86H175l8-6" fill="none" stroke="#fff" stroke-width="2"/>
+            <g fill="#fff" font-size="12"><text x="42" y="32">Rocha</text><text x="240" y="46">Fratura</text><text x="175" y="42">Pulso</text><text x="183" y="105">Eco</text></g>
+          </svg>
+          <figcaption>A sonda registra o eco da parede em diferentes ângulos e profundidades.</figcaption>
+        </figure>
+        <figure>
+          <canvas id="aquisicao-log" width="330" height="140" role="img" aria-label="Perfil acústico sintético com camadas inclinadas e feições senoidais"></canvas>
+          <figcaption>Perfil desenrolado · azimute na horizontal e profundidade na vertical.</figcaption>
+        </figure>
+      </div>
+      <p><a href="enunciado.png">Abrir o enunciado do desafio</a></p>
+    </section>
+
+    <section id="metodos">
+      <h2>Reconstrução e treinamento</h2>
+      <table>
+        <caption>Interpolação de uma coluna ausente · valores ilustrativos</caption>
+        <thead><tr><th scope="col">Linha</th><th scope="col">Esquerda</th><th scope="col">Lacuna estimada</th><th scope="col">Direita</th></tr></thead>
+        <tbody><tr><th scope="row">1</th><td>60</td><td>70</td><td>80</td></tr><tr><th scope="row">2</th><td>62</td><td>72</td><td>82</td></tr><tr><th scope="row">3</th><td>64</td><td>74</td><td>84</td></tr></tbody>
+      </table>
+      <h3>Aprendizado com máscaras</h3>
+      <ol class="flow"><li>Imagem observada</li><li>Máscara artificial</li><li>Previsão da rede</li><li>Comparação com o original</li></ol>
+    </section>
+
+    <section id="geometria">
+      <h2>Continuidade circular</h2>
+      <p>As bordas 0° e 360° são a mesma direção. O tracejado dentro da lacuna mostra uma continuação geométrica ilustrativa.</p>
+      <label for="lacuna">Largura da lacuna</label>
+      <input id="lacuna" type="range" min="0" max="180" step="5" value="70">
+      <output id="graus" for="lacuna">70°</output>
+      <canvas id="curva" width="700" height="185" role="img" aria-label="Curva senoidal que conecta as bordas e tem um trecho ausente ajustável"></canvas>
+      <div class="azimute" aria-hidden="true"><span>0°</span><span>90°</span><span>180°</span><span>270°</span><span>360°</span></div>
+    </section>
+
+    <section id="incerteza">
+      <h2>Hipóteses e incerteza</h2>
+      <p>Quando três reconstruções divergem em uma lacuna, o trecho merece revisão. Mesmo quando as hipóteses concordam, a estimativa pode ter erro.</p>
+      <div class="cols">
+        <figure><img src="originais/divergencia.svg" alt="Três reconstruções divergentes em uma região ausente"><figcaption>Hipóteses A, B e C · SVG do chat.</figcaption></figure>
+        <figure><canvas id="hipoteses" width="330" height="140" role="img" aria-label="Mapa de divergência com a maior intensidade no centro da região ausente"></canvas><figcaption>Mapa de divergência simulado · a intensidade aumenta em direção ao centro da lacuna.</figcaption></figure>
+      </div>
+    </section>
+
+    <section id="sensores">
+      <h2>Evidências de outros sensores</h2>
+      <div class="track-labels"><span>Amplitude</span><span>Porosidade</span><span>Resistividade</span><span>Diâmetro</span></div>
+      <canvas id="perfis" width="700" height="150" role="img" aria-label="Quatro perfis sintéticos comparados em um intervalo comum de profundidade"></canvas>
+      <p>As trilhas compartilham o eixo de profundidade. Um intervalo com alterações simultâneas fornece contexto à revisão.</p>
+    </section>
+
+    <section id="disciplinas">
+      <h2>Inspirações da proposta</h2>
+      <dl class="cards">
+        <div><dt>Medicina</dt><dd>Expressar a incerteza da reconstrução.</dd></div>
+        <div><dt>Astronomia</dt><dd>Usar restrições físicas quando faltam medições.</dd></div>
+        <div><dt>Aviação</dt><dd>Cruzar evidências de sensores.</dd></div>
+        <div><dt>Geologia</dt><dd>Respeitar a geometria da parede do poço.</dd></div>
+      </dl>
+    </section>
+
+    <section id="visualizador">
+      <h2>Visualizador e fila de revisão</h2>
+      <p>Conceitos discutidos no chat como <img class="marca" src="originais/geoecho.svg" alt=""> GeoEcho AI e GeoVision. Exemplo sintético com intervalos fictícios.</p>
+      <button id="referencia" type="button" aria-pressed="false">Mostrar referência</button>
+      <div class="cols three">
+        <figure><canvas id="original" width="220" height="175" role="img" aria-label="Imagem sintética observada com lacuna"></canvas><figcaption id="original-label">Observado com lacuna</figcaption></figure>
+        <figure><canvas id="estimativa" width="220" height="175" role="img" aria-label="Estimativa sintética com máscara em contorno tracejado"></canvas><figcaption>Estimativa · área preenchida em tracejado</figcaption></figure>
+        <figure><canvas id="incerteza-log" width="220" height="175" role="img" aria-label="Mapa sintético de divergência"></canvas><figcaption>Divergência na região estimada</figcaption></figure>
+      </div>
+      <ol>
+        <li><strong>3.204 m</strong> · possível feição planar, revisar continuidade.</li>
+        <li><strong>3.205 m</strong> · divergência alta, manter intervalo inconclusivo.</li>
+      </ol>
+    </section>
+
+    <section id="arquitetura">
+      <h2>Fluxo técnico proposto</h2>
+      <ol class="flow"><li>Amplitude WAID</li><li>Normalização e máscara</li><li>GeoRestore · reconstrução</li><li>GeoGuard · divergência</li><li>GeoInsight · fila</li><li>Revisão geológica</li></ol>
+      <div class="cols three pillars">
+        <figure><img src="originais/reconstruir.svg" alt=""><figcaption>Reconstruir</figcaption></figure>
+        <figure><img src="originais/validar.svg" alt=""><figcaption>Validar</figcaption></figure>
+        <figure><img src="originais/priorizar.svg" alt=""><figcaption>Priorizar</figcaption></figure>
+      </div>
+      <img class="convergencia" src="originais/convergencia.svg" alt="As três etapas convergem em um fluxo">
+    </section>
+
+    <section id="avaliacao">
+      <h2>Teste com referência conhecida</h2>
+      <ol class="flow"><li>Selecionar recorte de teste</li><li>Ocultar trecho observado</li><li>Executar método</li><li>Revelar referência e medir erro</li></ol>
+    </section>
+
+    <section id="produtividade">
+      <h2>Projeção anual de produtividade</h2>
+      <p>Valor estimado da capacidade de trabalho liberada. Os parâmetros abaixo são hipóteses de cenário.</p>
+      <div class="cols">
+        <label for="minutos">Minutos poupados por dia <input id="minutos" type="number" min="0" max="480" value="40"></label>
+        <label for="equipes">Equipes <input id="equipes" type="number" min="1" max="1000" value="35"></label>
+        <label for="hora">Valor da hora de equipe (R$) <input id="hora" type="number" min="0" step="0.01" value="200"></label>
+        <label for="dias">Dias de trabalho por ano <input id="dias" type="number" min="1" max="366" value="220"></label>
+      </div>
+      <button id="restaurar" type="button">Restaurar cenário de referência</button>
+      <p><output id="projecao" for="minutos equipes hora dias" aria-live="polite"></output></p>
+      <table id="escala">
+        <caption>Valor anual por número de equipes · nas mesmas condições de minutos, dias e hora</caption>
+        <thead><tr><th scope="col">Equipes</th><th scope="col">Valor anual (R$)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section id="valor">
+      <h2>Níveis de impacto a investigar</h2>
+      <ol class="flow"><li>Tempo de trabalho</li><li>Menos retrabalho</li><li>Consistência</li><li>Detecção de eventos</li><li>Impacto operacional</li></ol>
+    </section>
+
+    <section id="sergipe">
+      <h2>Sergipe Águas Profundas</h2>
+      <dl class="cards">
+        <div><dt>Mais de R$ 60 bilhões</dt><dd>Investimento previsto no SEAP</dd></div>
+        <div><dt>32 poços</dt><dd>Previstos</dd></div>
+        <div><dt>2 FPSOs</dt><dd>Unidades de produção</dd></div>
+        <div><dt>Cerca de 134 km</dt><dd>Gasoduto previsto</dd></div>
+        <div><dt>Mais de 1 bilhão de boe</dt><dd>Produção prevista ao longo do projeto</dd></div>
+      </dl>
+      <p><a href="https://agencia.petrobras.com.br/w/negocio/petrobras-aprova-novos-investimentos-em-seap-e-avan%C3%A7a-na-contrata%C3%A7%C3%A3o-de-duas-plataformas-para-a-bacia-sergipe-alagoas">Fonte dos números · Petrobras</a></p>
+    </section>
+
+    <section id="storyboard">
+      <h2>Storyboard do pitch</h2>
+      <ol class="slides">
+        <li><strong>O exame incompleto</strong><p>Abrir com o ultrassom e a região ausente.</p></li>
+        <li><strong>O ultrassom das rochas</strong><p>Apresentar equipe, perfil acústico e lacunas.</p></li>
+        <li><strong>Reconstruir</strong><p>Exibir a estimativa em área marcada.</p></li>
+        <li><strong>Validar</strong><p>Mostrar um caso de alta divergência.</p></li>
+        <li><strong>Priorizar</strong><p>Abrir a fila de revisão.</p></li>
+        <li><strong>Geonexo</strong><p>Reunir os três pilares e seguir para a demo.</p></li>
+        <li><strong>Sergipe Águas Profundas</strong><p>Situar o investimento regional.</p></li>
+        <li><strong>40 minutos por dia</strong><p>Apresentar o cenário hipotético e suas premissas.</p></li>
+        <li><strong>Próximo passo</strong><p>Propor um piloto com especialistas.</p></li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>

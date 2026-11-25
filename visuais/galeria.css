@@ -1,0 +1,40 @@
+* { box-sizing: border-box; }
+body { margin: 0; background: #101820; color: #f4f7f8; font: 1rem/1.55 system-ui, sans-serif; }
+header, main { width: min(72rem, calc(100% - 2rem)); margin: auto; }
+header { padding: 2rem 0 1rem; }
+h1 { font-size: clamp(2.3rem, 7vw, 4rem); margin: 0; line-height: 1.1; }
+h2 { margin-top: 0; line-height: 1.25; }
+h3, dt { font-weight: 700; }
+p, dd, figcaption { color: #d0dee6; }
+nav { display: flex; flex-wrap: wrap; gap: .65rem 1.25rem; }
+a { color: #78e8d4; }
+section { background: #162330; border: 1px solid #40536a; border-radius: .75rem; margin: 0 0 1rem; padding: clamp(1rem, 4vw, 2rem); }
+figure { margin: 0; }
+canvas, figure svg, figure img { display: block; width: 100%; height: auto; }
+figcaption { margin-top: .5rem; }
+.cols, .cards, .slides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.three, .slides { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cards > div, .slides > li, .flow > li { border: 1px solid #40536a; border-radius: .45rem; padding: .75rem; }
+dd { margin: 0; }
+.flow, .slides { padding-left: 1.5rem; }
+.flow { display: flex; flex-wrap: wrap; gap: .65rem 1.6rem; }
+.azimute, .track-labels { display: flex; justify-content: space-between; font-size: .82rem; gap: .2rem; }
+.track-labels span { width: 25%; text-align: center; }
+.marca { width: 1.5rem; vertical-align: middle; }
+.pillars { text-align: center; }
+.pillars img { width: 4rem; margin: auto; }
+.convergencia { display: block; width: 100%; max-width: 20rem; margin: auto; }
+button, input[type="number"] { font: inherit; color: #f4f7f8; background: #213549; border: 1px solid #83a2b3; border-radius: .35rem; padding: .4rem .6rem; }
+button { cursor: pointer; margin: .65rem 0; }
+input { accent-color: #78e8d4; }
+input[type="number"] { display: block; width: min(100%, 9rem); }
+:focus-visible { outline: 3px solid #ffe599; outline-offset: 3px; }
+table { border-collapse: collapse; width: 100%; text-align: left; }
+caption { text-align: left; margin: .5rem 0; }
+th, td { padding: .35rem; border-bottom: 1px solid #526779; }
+meter { display: inline-block; width: min(40%, 14rem); margin: 0 .65rem 0 0; }
+#projecao { font-size: 1.15rem; font-weight: 700; }
+@media (max-width: 42rem) {
+  .cols, .three, .cards, .slides { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
