@@ -1,0 +1,234 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazilian]{babel}
+\usepackage{lmodern,microtype,amsmath,array,booktabs,tabularx}
+\usepackage[a4paper,top=23mm,bottom=23mm,left=25mm,right=25mm,headheight=14pt]{geometry}
+\usepackage{xcolor,fancyhdr,hyperref}
+\definecolor{forest}{HTML}{16463D}
+\definecolor{ink}{HTML}{20272A}
+\definecolor{muted}{HTML}{495D58}
+\definecolor{line}{HTML}{6F837E}
+\definecolor{paperaccent}{HTML}{EDF4F1}
+\hypersetup{colorlinks=true,allcolors=forest,pdftitle={Reconstrução assistida de imagens acústicas de poços},pdfauthor={Projeto GeoNexo},pdfsubject={Fundamentação técnica e cenários econômicos}}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\sffamily\bfseries\color{forest} GEONEXO}
+\fancyhead[R]{\small\sffamily\color{muted} Nota técnica \enspace | \enspace Novembro de 2026}
+\fancyfoot[L]{\small\sffamily\color{muted} Reconstrução de imagens acústicas de poços}
+\fancyfoot[R]{\small\sffamily\color{muted}\thepage}
+\renewcommand{\headrulewidth}{.35pt}
+\renewcommand{\footrulewidth}{.35pt}
+\renewcommand{\headrule}{{\color{line}\hrule width\headwidth height\headrulewidth\vskip-\headrulewidth}}
+\renewcommand{\footrule}{{\color{line}\hrule width\headwidth height\footrulewidth\vskip-\footrulewidth}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.27}
+\setlength{\abovecaptionskip}{6pt}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\rs}{R\$\,}
+\newcommand{\usd}{US\$\,}
+\newcommand{\callout}[1]{\par\smallskip\noindent\colorbox{paperaccent}{%
+  \parbox{\dimexpr\linewidth-2\fboxsep\relax}{\vspace{4pt}\small #1\vspace{4pt}}}\par\smallskip}
+\newcommand{\minor}[1]{\par\medskip{\sffamily\bfseries\color{forest}#1}\par}
+\newcommand{\metric}[2]{\textbf{#1}\enspace #2}
+
+\begin{document}
+\color{ink}
+{\sffamily\bfseries\small\color{forest} REVISÃO APLICADA E ANÁLISE DE CENÁRIOS\par}
+\vspace{8pt}
+{\fontsize{26}{29}\selectfont\bfseries Reconstrução assistida de\\ imagens acústicas de poços\par}
+\vspace{5pt}
+{\large\color{muted} Fundamentação da meta de 10\% e cenários econômicos\\ para Sergipe e para operações offshore no mundo\par}
+\vspace{7pt}
+{\sffamily\small Projeto GeoNexo \enspace$\cdot$\enspace 27 de novembro de 2026\par}
+\vspace{11pt}
+
+\minor{Resumo}
+O GeoNexo propõe reconstruir trechos ausentes em imagens acústicas de poços, indicar a incerteza da reconstrução e orientar a revisão por especialistas. Esta nota rastreia os números da apresentação do projeto, examina métodos da astronomia, medicina, aviação e mineração e propõe como testar a meta de 10\% de redução relativa do erro. A origem do comparativo de 10,53 pontos percentuais é um preprint de segmentação de imagens de poços, cujo resultado se refere à concordância com pseudorrótulos. A análise econômica usa uma tarifa observável de \usd414 mil por dia de navio-sonda. Com essa referência e câmbio ilustrativo de \rs5 por dólar, 12 horas de espera efetivamente evitadas no projeto Sergipe Águas Profundas equivaleriam a \rs1,035 milhão bruto. Em uma adoção internacional hipotética por 50 sondas, 12 horas anuais evitadas por sonda equivaleriam a \usd10,35 milhões brutos. São cenários condicionais para orientar um piloto.
+
+{\small\textbf{Palavras-chave}\enspace Imagem acústica de poço, reconstrução, incerteza, tempo de sonda, Sergipe Águas Profundas.}
+
+\section{Origem da meta de 10\%}
+
+O slide 7 de \textit{e.pdf} apresenta três metas de validação: reduzir em 10\% o erro de reconstrução, em 30\% os erros nas regiões classificadas como confiáveis e em 35\% o tempo de análise \cite{deck}. A evidência quantitativa citada no mesmo slide vem da Tabela 1 de Silva \cite{silva}, em cinco poços da base aberta WAID \cite{waid}.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{Yrr}
+\toprule
+\textbf{Comparador no preprint de segmentação} & \textbf{Concordância} & \textbf{Ganho do CG-DCA} \\
+\midrule
+Concatenação direta de imagem e perfis & 75,18\% & +10,53 p.p. \\
+Atenção local por profundidade (DCA) & 80,44\% & +5,27 p.p. \\
+Atenção local com controle de confiança (CG-DCA) & 85,71\% & --- \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+A concordância é medida contra pseudorrótulos, após alinhamento dos rótulos de classe. Os 10,53 p.p. são a diferença $85{,}71-75{,}18$ na tarefa de segmentação. A comparação com DCA mostra quanto o resultado depende da referência escolhida.
+
+\callout{\textbf{Por que testar 10\%?} É um limiar de engenharia previamente declarado para exigir um ganho mensurável sobre o método atual. As fontes fundamentam os mecanismos e a viabilidade do teste. A magnitude em imagens reconstruídas precisa ser medida pelo GeoNexo.}
+
+\newpage
+\section{Evidências de outras áreas}
+
+A revisão selecionou estudos originais e documentação de operadores com relação direta com recuperação de dados incompletos, validação humana ou combinação de medições. Cada resultado mantém sua própria unidade de medida.
+
+\subsection{Astronomia: testar reconstruções com dados incompletos}
+
+Na primeira imagem de M87*, a colaboração Event Horizon Telescope organizou quatro equipes independentes de reconstrução e testou métodos com dados sintéticos de estrutura conhecida \cite{eht}. Esse desenho tornou possível verificar quais características apareciam com diferentes técnicas e eram estáveis diante da amostragem incompleta.
+
+\textbf{Aplicação ao GeoNexo.} Ocultar, em trechos íntegros, setores azimutais, lacunas em profundidade e faixas de diferentes dimensões. Comparar a imagem recuperada com os valores reais ocultados e examinar se traços geológicos permanecem coerentes quando se muda o método.
+
+\subsection{Medicina: medir tempo e preservar a qualidade da leitura}
+
+Johnson et al.\ avaliaram prospectivamente 170 pacientes em ressonância magnética de joelho de 3 T, com leitura por seis radiologistas \cite{mri}. O tempo médio de aquisição foi de 9 min 56 s para 5 min 33 s, uma redução de \textbf{44,1\%} calculada a partir dos tempos publicados. O estudo encontrou equivalência diagnóstica para as alterações avaliadas. Em outro trabalho, Ekanayake et al.\ estimaram conjuntamente a reconstrução e a incerteza em cada pixel da ressonância \cite{pixcue}.
+
+\textbf{Aplicação ao GeoNexo.} Cronometrar o fluxo inteiro de revisão e pedir uma avaliação independente dos achados. Exibir a região estimada e destacar a incerteza, deixando o especialista aceitar o preenchimento, pedir revisão ou retornar à imagem original.
+
+\subsection{Aviação: reconciliar sensores antes de confiar no resultado}
+
+A FAA descreve o ASDE-X, implantado em 35 aeroportos dos Estados Unidos \cite{faa}. O sistema usa fontes como radar de superfície, multilateração e ADS-B para acompanhar aeronaves e veículos em solo. O número de aeroportos mede implantação.
+
+\textbf{Aplicação ao GeoNexo.} Quando houver perfis auxiliares, verificar alinhamento em profundidade e integridade de cada canal antes da fusão. Avaliar separadamente a versão de imagem única e a versão multimodal, incluindo casos de sensor ausente ou desalinhado.
+
+\subsection{Mineração: cronometrar o fluxo de ponta a ponta}
+
+No caso Kennecott, Danielson et al.\ estudaram interpretação automatizada de perfis acústicos e ópticos de furos \cite{kennecott}. Uma análise interna do piloto apontou redução de cerca de 40 horas para 5 minutos por furo na marcação de estruturas. A economia total de tempo estimada pelos autores foi de \textbf{67\%} para um furo típico, considerando tarefas que permaneceram manuais, como ajuste de profundidade, preparação e controle de qualidade. Os autores também registraram a perda de algumas feições mais finas.
+
+\textbf{Aplicação ao GeoNexo.} Medir importação, triagem, revisão e correções. Cronometrar a inferência separadamente permite identificar onde o tempo realmente muda e evita atribuir ao fluxo inteiro o ganho de uma etapa.
+
+\newpage
+\section{Como demonstrar as três metas}
+
+Para o desfecho principal, propõe-se o erro absoluto médio (MAE) nos pixels originalmente observados e ocultados no teste, calculado com a mesma escala de intensidade em cada comparação. Sejam $E_b$ e $E_g$ os erros do comparador e do GeoNexo sob as mesmas máscaras. O ganho relativo é
+\[
+    G_{\rm rec}=100\frac{E_b-E_g}{E_b}\quad (E_b>0).
+\]
+Por exemplo, um MAE normalizado de $0{,}100$ no comparador e $0{,}090$ no GeoNexo dá $G_{\rm rec}=10\%$. O protocolo deve declarar antecipadamente a normalização e a forma de combinar poços, modalidades de imagem e padrões de falha.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}p{.28\linewidth}Y@{}}
+\toprule
+\textbf{Meta do slide 7} & \textbf{Medição proposta} \\
+\midrule
+\metric{10\%}{menos erro de reconstrução} &
+Redução relativa do MAE nos pixels mascarados. Auditar a continuidade de feições e preservar as amostras observadas. \\
+\metric{30\%}{menos erros em regiões confiáveis} &
+Comparar, à mesma cobertura, a fração de regiões aceitas cujo erro excede uma tolerância pré-definida. Reportar também a cobertura, isto é, a fração de regiões aceitas. \\
+\metric{35\%}{menos tempo de análise} &
+Redução relativa do tempo total de revisão, em comparação pareada com o fluxo atual e com qualidade revisada por especialistas. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\minor{Desenho do piloto}
+\begin{enumerate}
+\setlength{\itemsep}{1pt}
+\setlength{\topsep}{2pt}
+\item Usar a WAID em avaliação por poço excluído do treino, reservando poços ou dados adicionais para confirmação. Definir máscaras e comparadores antes da avaliação, incluindo interpolação que respeite a periodicidade azimutal e um método de reconstrução de referência.
+\item Avaliar lacunas naturais com especialistas às cegas quanto ao método. Como o sinal ausente é desconhecido nesses casos, registrar coerência geológica e correções, separadamente do MAE das lacunas sintéticas.
+\item Alternar aleatoriamente a ordem dos fluxos por analista e registrar tempo, correções e achados críticos. Reportar diferenças pareadas e incerteza por poço e por analista. Com cinco poços, tratar os intervalos como exploratórios e ampliar a amostra para uma validação confirmatória.
+\end{enumerate}
+
+\minor{Critério de confirmação}
+Comparar o intervalo de confiança de 95\% do ganho de reconstrução com 0\% e com 10\%. Um ganho pontual de 10\% é evidência preliminar. Um limite inferior de pelo menos 10\% sustenta a meta, desde que a revisão técnica preserve os critérios de qualidade pré-definidos. Separar casos com amostragem insuficiente, onde o produto pode recomendar revisão em vez de preencher o trecho.
+
+\section{Quando tempo vira valor econômico}
+
+Uma revisão mais rápida libera tempo de especialista. O valor de sonda surge apenas quando a revisão condiciona uma decisão no caminho crítico e sua antecipação encurta a espera. O piloto deve registrar horário em que o dado chega, início da espera, decisão, retomada e sondas afetadas. Cronometrar eventos únicos evita contar duas vezes um atraso atribuído tanto à análise quanto ao retrabalho.
+
+\newpage
+\section{Cenários para Sergipe e para o mundo}
+
+No Sergipe Águas Profundas (SEAP), a Petrobras informou investimento superior a \rs60 bilhões e 32 poços a construir e interligar aos dois projetos \cite{petrobras}. Os dois FPSOs são unidades de produção, armazenamento e transferência. O comunicado de contratação indica início de produção em 2030 para SEAP II e em 2031 para SEAP I \cite{sec}. Essas datas situam o projeto. A escala de 32 poços se refere ao conjunto dos módulos, e a frota de perfuração e seus períodos de uso requerem programação própria.
+
+\minor{Tarifa de referência e cálculo}
+O relatório de frota da Seadrill de novembro de 2026 publica \usd414.000 por dia para o West Polaris, de abril de 2026 a março de 2027 \cite{seadrill}. Dividindo por 24, a referência é de \textbf{\usd17.250 por hora}. Com câmbio ilustrativo de \rs5,00/\$, são \textbf{\rs86.250 por hora}. A tarifa é de um contrato brasileiro específico e serve como parâmetro de sensibilidade.
+
+\[
+ V_{\rm bruto}=\sum_s h_s\,\frac{D_s}{24},
+ \qquad
+ V_{\text{líquido}}=\alpha V_{\rm bruto}-C.
+\]
+Aqui, $h_s$ é a soma das horas críticas distintas evitadas na sonda $s$, $D_s$ é a diária, $\alpha$ é a fração economicamente capturada e $C$ é o custo incremental. Para conversão em reais, aplica-se o câmbio à diária. Se a sonda continuar a operar durante a revisão, a espera evitada é zero. Se a cobrança permanecer fixa, as horas liberadas podem ter valor operacional sem redução imediata da fatura.
+
+\minor{Sergipe: uma campanha de adoção no SEAP}
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{Yrr}
+\toprule
+\textbf{Hipótese de eventos críticos distintos} & \textbf{Horas evitadas} & \textbf{Valor bruto} \\
+\midrule
+4 eventos de 30 min & 2 h & \rs172.500 \\
+12 eventos de 1 h & 12 h & \rs1.035.000 \\
+16 eventos de 1 h 30 min & 24 h & \rs2.070.000 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+Os eventos podem se distribuir por uma ou mais sondas. Uma hora efetiva por mês de campanha vale \rs86.250 no mês e \rs1,035 milhão se esse ritmo for medido em 12 meses ativos. Em 24 meses ativos à mesma cadência, o total seria \rs2,07 milhões. Esse horizonte ilustra o cálculo da campanha, cuja duração e intensidade dependem da programação da perfuração.
+
+\minor{Escala internacional: adoção em sondas elegíveis}
+Valores brutos em milhões de dólares por ano, à mesma tarifa de referência. As quantidades abaixo são hipóteses de adoção em vários países.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{Yrrr}
+\toprule
+\textbf{Sondas participantes} & \textbf{2 h/sonda} & \textbf{12 h/sonda} & \textbf{24 h/sonda} \\
+\midrule
+25  & 0,86 & 5,18  & 10,35 \\
+50  & 1,73 & 10,35 & 20,70 \\
+100 & 3,45 & 20,70 & 41,40 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+A Baker Hughes registrou 1.111 sondas em atividade em outubro de 2026 fora dos EUA e do Canadá, incluindo operações terrestres e marítimas \cite{baker}. Para estimar o mercado elegível seriam necessários tipo de sonda, uso de imagens compatíveis, incidência de esperas críticas, adesão e tarifa por operação.
+
+\newpage
+\section{Auditoria da projeção do pitch}
+
+O slide 9 de \textit{e.pdf} apresenta \rs11,82 milhões potenciais para um investimento proposto de \rs120 mil \cite{deck}. As parcelas e suas condições são as seguintes.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}p{.26\linewidth}Y@{}}
+\toprule
+\textbf{Parcela do slide} & \textbf{Aritmética e evidência necessária} \\
+\midrule
+Especialistas\newline \textbf{\rs89.600}
+  & 896 h $\times$ \rs100/h. Uma decomposição compatível é 32 poços $\times$ 80 h $\times$ 35\%. A carga horária, a taxa e o ganho precisam de medição local. \\
+Espera de sonda\newline \textbf{\rs2,13 milhões}
+  & 21,3 h $\times$ \rs100 mil/h. O total é compatível com 40 min por poço em 32 poços antes do arredondamento. O valor atualizado nessa hipótese seria \rs1,84 milhão, se todas as horas estiverem no caminho crítico. \\
+Retrabalho\newline \textbf{\rs9,6 milhões}
+  & 4 dias $\times$ \rs2,4 milhões/dia. O slide não apresenta frequência nem duração observadas. A parcela representa cerca de 81\% do total e pode coincidir com a espera já valorizada. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+A soma das parcelas exibidas é \rs11.819.600, cerca de 98,5 vezes o orçamento proposto. Na tarifa pública empregada nesta nota, recuperar \rs120 mil apenas por horas de sonda exigiria cerca de \textbf{1,39 h} efetivamente convertidas em redução de custo, supondo captura integral e considerando esse valor como custo total do exemplo.
+
+\minor{Conclusão}
+A evidência sustenta avaliar se uma reconstrução verificável, uma indicação de incerteza e uma revisão orientada melhoram o trabalho do especialista. O piloto deve testar a meta de 10\% com imagens de poços independentes e medir separadamente as horas críticas evitadas que podem ser monetizadas. Essas duas medições ligam o protótipo aos cenários de Sergipe e à escala internacional.
+
+\small
+\begin{thebibliography}{99}
+\setlength{\itemsep}{1pt}
+\setlength{\parsep}{0pt}
+\bibitem{deck} GeoNexo. \textit{Apresentação do projeto}, slides 6--10. Arquivo \textit{e.pdf} fornecido pela equipe, sem data.
+\bibitem{silva} Silva, J. L. L. J. \href{https://arxiv.org/html/2603.20729v1}{\textit{Weakly supervised multimodal segmentation of acoustic borehole images with depth-aware cross-attention}}. Preprint arXiv:2603.20729, 2026. Tabela 1.
+\bibitem{waid} Petrobras. \href{https://github.com/petrobras/waid}{\textit{Wellbore Acoustic Image Dataset (WAID)}}. Repositório oficial.
+\bibitem{eht} Event Horizon Telescope Collaboration. \href{https://doi.org/10.3847/2041-8213/ab0e85}{\textit{First M87 Event Horizon Telescope Results. IV. Imaging the Central Supermassive Black Hole}}. ApJL, 875(1), L4, 2019.
+\bibitem{mri} Johnson, P. M. et al. \href{https://doi.org/10.1148/radiol.220425}{\textit{Deep Learning Reconstruction Enables Prospectively Accelerated Clinical Knee MRI}}. Radiology, 307(2), e220425, 2023.
+\bibitem{pixcue} Ekanayake, M. et al. \href{https://doi.org/10.1007/s10278-024-01250-3}{\textit{PixCUE: Joint Uncertainty Estimation and Image Reconstruction in MRI using Deep Pixel Classification}}. JIIM, 38(4), 2071--2084, 2025.
+\bibitem{faa} Federal Aviation Administration. \href{https://www.faa.gov/air_traffic/technology/asde-x}{\textit{Airport Surface Detection Equipment, Model X (ASDE-X)}}. Documentação técnica.
+\bibitem{kennecott} Danielson, J. et al. \href{https://doi.org/10.36487/ACG_repo/2535_48}{\textit{Automated televiewer data interpretation and validation: an applied case study at Kennecott copper}}. SSIM, 2025.
+\bibitem{petrobras} Petrobras. \href{https://agencia.petrobras.com.br/w/negocio/petrobras-aprova-novos-investimentos-em-seap-e-avan%C3%A7a-na-contrata%C3%A7%C3%A3o-de-duas-plataformas-para-a-bacia-sergipe-alagoas}{\textit{Petrobras aprova novos investimentos em SEAP e avança na contratação de duas plataformas para a Bacia Sergipe-Alagoas}}. Agência Petrobras, 2026.
+\bibitem{sec} Petrobras. \href{https://www.sec.gov/Archives/edgar/data/1119639/000129281426003241/pbr20260529_6k.htm}{\textit{Petrobras signs contracts for two FPSOs for the Sergipe Deepwater project}}. Formulário 6-K, 29 de maio de 2026.
+\bibitem{seadrill} Seadrill. \href{https://www.seadrill.com/wp-content/uploads/2026/11/Seadrill-Fleet-Status-Report-November-2026-vF.pdf}{\textit{Fleet Status Report}}. Novembro de 2026, registro West Polaris.
+\bibitem{baker} Baker Hughes. \href{https://rigcount.bakerhughes.com/}{\textit{Rig Count Overview \& Summary Count}}. Série de sondas em atividade, outubro de 2026.
+\end{thebibliography}
+\end{document}
